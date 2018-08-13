@@ -1,0 +1,30 @@
+<p>
+Request URL: <a href="http://{{ request.headers['Host'] }}/{{ path }}">http://{{ request.headers['Host'] }}/{{ path }}</a>
+<br>
+From IP: {{ request.remote_addr }} : {{ request.environ.get('REMOTE_PORT')}}
+<br/>
+DCOS Service Serving this URL: {{ environment['MARATHON_APP_ID'] }}
+<br/>
+HOST: {{ environment['HOST'] }}
+<br/>
+HOSTNAME: {{ environment['HOSTNAME'] }}
+<br/>
+PORTS: {{ environment['PORTS']}}
+<br/> 
+RESPONSE CODE: {{ response_code }}
+
+</p>
+<p>Headers: <br/>
+{% for x in request.headers %}
+  <p>
+    <b>{{ loop.index }}:</b> {{ x }}
+  </p>
+{% endfor %}
+</p>
+<p>Env Vars: <br/>
+{% for x in environment %}
+  <p>
+    <b>{{ loop.index }}:</b> {{ x }}={{ environment[x] }}
+  </p>
+{% endfor %}
+</p>
